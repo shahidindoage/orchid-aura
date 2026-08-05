@@ -1,0 +1,6 @@
+{
+  "name": "ORCHID AURA",
+  "description": "A luxury spa & wellness sanctuary offering personalized therapeutic treatments, holistic massages, and botanical facials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

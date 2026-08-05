@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-jakarta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom smooth scrollbar & luxury animations */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #C6A473;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A37B57;
+}
+
