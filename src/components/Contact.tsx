@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUpRight, Send, Check, Calendar, Compass } from 'lucide-react';
+import { Sparkles, MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUpRight, Send, Check, Calendar, Compass, Loader2 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 interface ContactProps {
@@ -8,17 +8,43 @@ interface ContactProps {
 
 export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    serviceInterest: 'Signature Rituals',
+    serviceInterest: 'Swedish Massage', // Changed default to match your options
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setIsSending(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch('send-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormSubmitted(true);
+      } else {
+        throw new Error(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error: any) {
+      setErrorMessage(error.message);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -48,7 +74,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
         {/* Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
-          {/* Left Column: Sanctuary Details & Quick Reservation Banner */}
+          {/* Left Column */}
           <div className="lg:col-span-5 space-y-8">
             
             {/* Sanctuary Details Card */}
@@ -112,13 +138,8 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                     Direct Concierge Desk
                   </span>
                   <p className="font-jakarta text-sm font-semibold text-[#222222]">
-                   
-
                     +971 55 469 0739
                   </p>
-                  {/* <p className="font-inter text-xs text-[#666666]">
-                    concierge@orchidaura.com
-                  </p> */}
                 </div>
               </a>
 
@@ -227,20 +248,20 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                       className="w-full bg-[#FAF8F5] border border-[#F2ECE4] focus:border-[#A37B57] focus:bg-white rounded-2xl px-4 py-3.5 text-xs sm:text-sm font-jakarta text-[#222222] focus:outline-none focus:ring-2 focus:ring-[#A37B57]/20 transition-all duration-200 cursor-pointer"
                     >
                       <option value="Swedish Massage">Swedish Massage</option>
-<option value="Thai Massage">Thai Massage</option>
-<option value="Deep Tissue Massage">Deep Tissue Massage</option>
-<option value="Sports Massage">Sports Massage</option>
-<option value="Lymphatic Drainage Massage">Lymphatic Drainage Massage</option>
-<option value="Aromatherapy Massage">Aromatherapy Massage</option>
-<option value="Madero Therapy Massage">Madero Therapy Massage</option>
-<option value="Foot Reflexology Massage">Foot Reflexology Massage</option>
-<option value="Back & Shoulder Massage">Back & Shoulder Massage</option>
-<option value="Prenatal Massage">Prenatal Massage</option>
-<option value="Postnatal Massage">Postnatal Massage</option>
-<option value="Camrose Signature Massage">Camrose Signature Massage</option>
-<option value="Hot Stone Massage">Hot Stone Massage</option>
-<option value="Couple Massage">Couple Massage</option>
-<option value="Other Inquiries">Other Inquiries</option>
+                      <option value="Thai Massage">Thai Massage</option>
+                      <option value="Deep Tissue Massage">Deep Tissue Massage</option>
+                      <option value="Sports Massage">Sports Massage</option>
+                      <option value="Lymphatic Drainage Massage">Lymphatic Drainage Massage</option>
+                      <option value="Aromatherapy Massage">Aromatherapy Massage</option>
+                      <option value="Madero Therapy Massage">Madero Therapy Massage</option>
+                      <option value="Foot Reflexology Massage">Foot Reflexology Massage</option>
+                      <option value="Back & Shoulder Massage">Back & Shoulder Massage</option>
+                      <option value="Prenatal Massage">Prenatal Massage</option>
+                      <option value="Postnatal Massage">Postnatal Massage</option>
+                      <option value="Camrose Signature Massage">Camrose Signature Massage</option>
+                      <option value="Hot Stone Massage">Hot Stone Massage</option>
+                      <option value="Couple Massage">Couple Massage</option>
+                      <option value="Other Inquiries">Other Inquiries</option>
                     </select>
                   </div>
                 </div>
@@ -260,13 +281,30 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   />
                 </div>
 
+                {/* Error Message Display */}
+                {errorMessage && (
+                  <div className="text-xs text-red-500 font-jakarta">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#222222] hover:bg-[#A37B57] text-white font-jakarta text-xs sm:text-sm font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-98"
+                    disabled={isSending}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#222222] hover:bg-[#A37B57] text-white font-jakarta text-xs sm:text-sm font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>Send message</span>
-                    <Send className="w-4 h-4 text-[#C6A473]" />
+                    {isSending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send message</span>
+                        <Send className="w-4 h-4 text-[#C6A473]" />
+                      </>
+                    )}
                   </button>
 
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-jakarta text-[#888888]">
@@ -290,7 +328,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   <button
                     onClick={() => {
                       setFormSubmitted(false);
-                      setFormData({ name: '', email: '', phone: '', serviceInterest: 'Signature Rituals', message: '' });
+                      setFormData({ name: '', email: '', phone: '', serviceInterest: 'Swedish Massage', message: '' });
                     }}
                     className="inline-flex items-center gap-2 text-xs font-jakarta text-[#A37B57] hover:text-[#222222] font-semibold transition-colors"
                   >
@@ -309,4 +347,3 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
     </section>
   );
 };
-
