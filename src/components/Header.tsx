@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 interface HeaderProps {
   onOpenBooking: () => void;
@@ -46,15 +47,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking }) => {
           </nav>
 
           {/* Book Your Session Button - Hidden on mobile, visible on sm+ screens */}
-          <button
-            onClick={onOpenBooking}
-            className="hidden sm:flex items-center gap-2.5 bg-white hover:bg-[#FAF8F5] text-[#222222] text-xs sm:text-sm font-semibold pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-1.5 sm:py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform active:scale-95 border border-[#C6A473]/30 group"
+         <a href="https://wa.me/971554690739" target="_blank" 
+            // onClick={onOpenBooking}
+            className="hidden sm:flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white  text-xs sm:text-sm font-semibold pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-1.5 sm:py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform active:scale-95 border border-[#C6A473]/30 group"
           >
             <span>Book your session</span>
-            <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black flex items-center justify-center transition-transform group-hover:rotate-45 duration-300">
-              <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+            <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#ffffff] flex items-center justify-center transition-transform group-hover:rotate-45 duration-300">
+              <FaWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
             </span>
-          </button>
+          </a>
 
           {/* Mobile Hamburger Toggle */}
           <button

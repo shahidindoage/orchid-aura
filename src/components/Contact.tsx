@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, MapPin, Phone, Mail, Clock, ShieldCheck, ArrowUpRight, Send, Check, Calendar, Compass } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 interface ContactProps {
   onOpenBooking: () => void;
@@ -89,11 +90,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   <div className="space-y-2 text-xs font-inter text-[#555555]">
                     <div className="flex justify-between items-center bg-[#FAF8F5] px-3.5 py-2 rounded-xl border border-[#F2ECE4]">
                       <span>Monday – Friday</span>
-                      <span className="font-semibold text-[#222222] font-jakarta">09:00 AM – 09:00 PM</span>
+                      <span className="font-semibold text-[#222222] font-jakarta">09:00 AM – 10:30 PM</span>
                     </div>
                     <div className="flex justify-between items-center bg-[#FAF8F5] px-3.5 py-2 rounded-xl border border-[#F2ECE4]">
                       <span>Saturday – Sunday</span>
-                      <span className="font-semibold text-[#222222] font-jakarta">08:30 AM – 09:30 PM</span>
+                      <span className="font-semibold text-[#222222] font-jakarta">08:30 AM – 10:30 PM</span>
                     </div>
                   </div>
                 </div>
@@ -102,22 +103,24 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
               <div className="border-t border-[#F2ECE4]" />
 
               {/* Direct Contacts */}
-              <div className="flex items-start gap-4 group">
+              <a href="https://wa.me/971554690739" target="_blank" className="flex items-start gap-4 group">
                 <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-[#F2ECE4] text-[#A37B57] flex items-center justify-center shrink-0 group-hover:bg-[#A37B57] group-hover:text-white transition-all duration-300">
-                  <Phone className="w-5 h-5" />
+                  <FaWhatsapp className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
                   <span className="text-[11px] font-jakarta uppercase tracking-wider text-[#A37B57] font-semibold">
                     Direct Concierge Desk
                   </span>
                   <p className="font-jakarta text-sm font-semibold text-[#222222]">
-                    +1 (800) 482-AURA
+                   
+
+                    +971 55 469 0739
                   </p>
-                  <p className="font-inter text-xs text-[#666666]">
+                  {/* <p className="font-inter text-xs text-[#666666]">
                     concierge@orchidaura.com
-                  </p>
+                  </p> */}
                 </div>
-              </div>
+              </a>
 
             </div>
 
@@ -216,18 +219,28 @@ export const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                   {/* Interest Area */}
                   <div className="space-y-2">
                     <label className="block text-xs font-jakarta font-semibold text-[#222222]">
-                      Topic of inquiry
+                      Type of Service
                     </label>
                     <select
                       value={formData.serviceInterest}
                       onChange={(e) => setFormData({ ...formData, serviceInterest: e.target.value })}
                       className="w-full bg-[#FAF8F5] border border-[#F2ECE4] focus:border-[#A37B57] focus:bg-white rounded-2xl px-4 py-3.5 text-xs sm:text-sm font-jakarta text-[#222222] focus:outline-none focus:ring-2 focus:ring-[#A37B57]/20 transition-all duration-200 cursor-pointer"
                     >
-                      <option value="Signature Rituals">Signature Rituals & Bodywork</option>
-                      <option value="Facial Rejuvenation">Facial & Cellular Rejuvenation</option>
-                      <option value="Private Suite Rentals">Private Suite & Hydrotherapy</option>
-                      <option value="Membership & Corporate">Sanctuary Membership / Corporate</option>
-                      <option value="Other Inquiries">Other Inquiries</option>
+                      <option value="Swedish Massage">Swedish Massage</option>
+<option value="Thai Massage">Thai Massage</option>
+<option value="Deep Tissue Massage">Deep Tissue Massage</option>
+<option value="Sports Massage">Sports Massage</option>
+<option value="Lymphatic Drainage Massage">Lymphatic Drainage Massage</option>
+<option value="Aromatherapy Massage">Aromatherapy Massage</option>
+<option value="Madero Therapy Massage">Madero Therapy Massage</option>
+<option value="Foot Reflexology Massage">Foot Reflexology Massage</option>
+<option value="Back & Shoulder Massage">Back & Shoulder Massage</option>
+<option value="Prenatal Massage">Prenatal Massage</option>
+<option value="Postnatal Massage">Postnatal Massage</option>
+<option value="Camrose Signature Massage">Camrose Signature Massage</option>
+<option value="Hot Stone Massage">Hot Stone Massage</option>
+<option value="Couple Massage">Couple Massage</option>
+<option value="Other Inquiries">Other Inquiries</option>
                     </select>
                   </div>
                 </div>

@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
 
             <div className="space-y-1.5 text-xs font-jakarta text-[#8E867A]">
               <p>742 Serenity Way, Beverly Hills Sanctuary District, CA</p>
-              <p>concierge@orchidaura.com • +1 (800) 482-AURA</p>
+              <p>concierge@orchidaura.com • +971 55 469 0739</p>
             </div>
           </div>
 

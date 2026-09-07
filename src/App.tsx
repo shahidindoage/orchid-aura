@@ -52,14 +52,16 @@ export default function App() {
           onExploreTreatments={handleExploreTreatments}
         />
 
-        {/* Editorial Brand Story & Philosophy */}
-        <About onOpenBooking={() => handleOpenBooking()} />
-
-        {/* Bespoke Treatment Menu & Editorial Service Layouts */}
+         {/* Bespoke Treatment Menu & Editorial Service Layouts */}
         <Services
           onSelectTreatment={(t) => handleOpenBooking(t)}
           onOpenQuiz={() => setIsQuizOpen(true)}
         />
+
+        {/* Editorial Brand Story & Philosophy */}
+        <About onOpenBooking={() => handleOpenBooking()} />
+
+       
 
         {/* Editorial Guest Reflections & Reviews */}
         <Testimonials />

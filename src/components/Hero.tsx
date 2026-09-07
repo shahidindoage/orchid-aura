@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { HERO_CARD_ITEMS } from '../data/spaData';
+import { FaWhatsapp } from 'react-icons/fa';
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -71,12 +72,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onExploreTreatments }
 
             {/* Dual CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                onClick={onOpenBooking}
-                className="bg-white hover:bg-[#FAF8F5] text-[#222222] font-jakarta text-sm sm:text-base font-medium px-7 py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-white/20 active:scale-95"
+              <a href="https://wa.me/971554690739" target="_blank" 
+                // onClick={onOpenBooking}
+                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white  font-jakarta text-sm sm:text-base font-medium px-7 py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-white/20 active:scale-95"
               >
-                Book your session
-              </button>
+                Book Your Session <FaWhatsapp className="w-7 h-7 fill-current" />
+              </a>
 
               <button
                 onClick={onExploreTreatments}
